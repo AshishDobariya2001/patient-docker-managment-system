@@ -47,7 +47,6 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
 
 Create .env file and add relevant key and values as shared separately along with code
 
-    $ run this command in postgres database 
     $ npm start
 
 ## API Document endpoints
