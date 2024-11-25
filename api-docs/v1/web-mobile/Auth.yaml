@@ -1,0 +1,63 @@
+paths:
+  /auth/signup:
+    post:
+     tags:
+       - "Auth"
+     summary: "Register a new user"
+     description: "Creates a new user account"
+     operationId: "registerUser"
+     consumes:
+       - "application/json"
+     requestBody:
+       description: "User information"
+       required: true
+       content:
+         application/json:
+           schema:
+             type: object
+             properties:
+               name:
+                 type: string
+                 example: "John Doe"
+               email:
+                 type: string
+                 example: "john.doe@example.com"
+               password:
+                 type: string
+                 example: "password123"
+               role:
+                 type: string
+                 example: "patient"
+     responses:
+       "201":
+         description: "User registered successfully"
+       "400":
+         description: "Invalid Request"
+  /auth/login:
+    post:
+     tags:
+       - "Auth"
+     summary: "Login to an existing user account"
+     description: "Authenticate and receive a JWT token"
+     operationId: "loginUser"
+     consumes:
+       - "application/json"
+     requestBody:
+       description: "User credentials"
+       required: true
+       content:
+         application/json:
+           schema:
+             type: object
+             properties:
+               email:
+                 type: string
+                 example: "john.doe@example.com"
+               password:
+                 type: string
+                 example: "password123"
+     responses:
+       "201":
+         description: "User logged in successfully"
+       "400":
+         description: "Invalid Request"

@@ -1,0 +1,133 @@
+paths:
+  /appointment:
+    post:
+      tags:
+        - "Appointment"
+      summary: "Create a new appointment"
+      description: "Registers a new appointment"
+      operationId: "createAppointment"
+      consumes:
+        - "application/json"
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: "Appointment information"
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                doctorId:
+                  type: integer
+                  example: 6
+                patientId:
+                  type: integer
+                  example: 10
+                appointmentDate:
+                  type: string
+                  format: date-time
+                  example: "2023-03-01T14:30:00.000Z"
+      responses:
+        "201":
+          description: "Appointment registered successfully"
+        "400":
+          description: "Invalid Request"
+    get:
+      tags:
+        - "Appointment"
+      summary: "Get list of appointments"
+      description: "Fetches a list of all appointments, accessible to roles DOCTOR, ADMIN, and PATIENT."
+      operationId: "getAppointments"
+      security:
+        - bearerAuth: []
+      parameters: []
+      responses:
+        "200":
+          description: "Successful response with appointment list"
+        "403":
+          description: "Forbidden. User does not have access."
+        "500":
+          description: "Internal Server Error"
+  /appointment/{id}:
+    get:
+      tags:
+        - "Appointment"
+      summary: "Get appointment by ID"
+      description: "Fetches appointment details by ID"
+      operationId: "getAppointmentById"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          description: "The ID of the appointment"
+          schema:
+            type: integer
+            example: 1
+      responses:
+        "200":
+          description: "Appointment fetched successfully"
+        "404":
+          description: "Appointment not found"
+        "400":
+          description: "Invalid ID"
+    put:
+      tags:
+        - "Appointment"
+      summary: "Update an existing appointment"
+      description: "Updates the appointment date by appointment ID"
+      operationId: "updateAppointment"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          description: "The ID of the appointment"
+          schema:
+            type: integer
+            example: 1
+      requestBody:
+        description: "Updated appointment information"
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                appointmentDate:
+                  type: string
+                  format: date-time
+                  example: "2023-03-01T14:30:00.000Z"
+      responses:
+        "200":
+          description: "Appointment updated successfully"
+        "400":
+          description: "Invalid appointment data"
+        "404":
+          description: "Appointment not found"
+    delete:
+      tags:
+        - "Appointment"
+      summary: "Delete an appointment"
+      description: "Deletes an appointment by its ID"
+      operationId: "deleteAppointment"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          description: "The ID of the appointment to delete"
+          schema:
+            type: integer
+            example: 1
+      responses:
+        "200":
+          description: "Appointment deleted successfully"
+        "400":
+          description: "Invalid appointment ID"
+        "404":
+          description: "Appointment not found"

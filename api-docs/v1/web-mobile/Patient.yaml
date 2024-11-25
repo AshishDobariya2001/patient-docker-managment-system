@@ -1,0 +1,129 @@
+paths:
+  /patient:
+    post:
+     tags:
+       - "Patient"
+     summary: "Create a new patient"
+     description: "Registers a new patient"
+     operationId: "createPatient"
+     consumes:
+       - "application/json"
+     security:
+        - bearerAuth: []
+     requestBody:
+       description: "Patient information"
+       required: true
+       content:
+         application/json:
+           schema:
+             type: object
+             properties:
+               name:
+                 type: string
+                 example: "John Doe"
+               age:
+                 type: integer
+                 example: 30
+               medicalHistory:
+                 type: string
+                 example: "No known allergies"
+     responses:
+       "201":
+         description: "Patient registered successfully"
+       "400":
+         description: "Invalid Request"
+    get:
+     tags:
+       - "Patient"
+     summary: "Get all patients"
+     description: "Retrieves a list of all patients"
+     operationId: "getPatients"
+     security:
+        - bearerAuth: []
+     responses:
+       "200":
+         description: "Patients retrieved successfully"
+       "400":
+         description: "Invalid Request"
+  /patient/{id}:
+    get:
+     tags:
+       - "Patient"
+     summary: "Get a specific patient by their ID"
+     description: "Retrieves a specific patient by their ID"
+     operationId: "getPatientById"
+     security:
+        - bearerAuth: []
+     parameters:
+       - name: id
+         in: path
+         required: true
+         description: "ID of the patient to retrieve"
+         schema:
+           type: integer
+     responses:
+       "200":
+         description: "Patient retrieved successfully"
+       "400":
+         description: "Invalid Request"
+    put:
+     tags:
+       - "Patient"
+     summary: "Update a specific patient by their ID"
+     description: "Updates a specific patient by their ID"
+     operationId: "updatePatient"
+     security:
+        - bearerAuth: []
+     parameters:
+       - name: id
+         in: path
+         required: true
+         description: "ID of the patient to update"
+         schema:
+           type: integer
+     requestBody:
+       required: true
+       content:
+         application/json:
+           schema:
+             type: object
+             properties:
+               name:
+                 type: string
+                 description: "Patient's name"
+                 required: false
+               age:
+                 type: integer
+                 description: "Patient's age"
+                 required: false
+               medicalHistory:
+                 type: string
+                 description: "Patient's medical history"
+                 required: false
+     responses:
+       "200":
+         description: "Patient updated successfully"
+       "400":
+         description: "Invalid Request"
+    delete:
+      tags:
+        - "Patient"
+      summary: "Delete a specific patient by their ID"
+      description: "Deletes a specific patient by their ID"
+      operationId: "deletePatient"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: "ID of the patient to delete"
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: "Patient deleted successfully"
+        "400":
+          description: "Invalid Request"
+        "401":
+          description: "Unauthorized access"
