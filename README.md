@@ -1,30 +1,63 @@
-# Appointment Management API
+# Patient Doctor Backend Service
 
-This API allows patients to create and manage appointments with doctors. It supports user authentication, role-based access control, and CRUD operations for appointments.
+<!-- ![Bricko](./public/images/logo.png) -->
 
-## Features
+---
 
--   **User Roles**: Patients, Doctors, Admin.
--   **Authentication**: JWT-based authentication for secure access.
--   **Appointment Management**:
-    -   **Patients**: Create, view, update, delete their own appointments.
-    -   **Doctors**: View and update appointments assigned to them.
-    -   **Admin**: Manage all appointments.
+## Requirements
 
-## Technologies
+For development, you will only need Node.js and a node global package, npm, installed in your environment.
 
--   **Node.js** with **Express.js** for the backend.
--   **MongoDB** with **Mongoose** for data management.
--   **bcrypt** for password hashing.
--   **jsonwebtoken (JWT)** for authentication.
+### Node
 
-## Installation
+- #### Node installation on Windows
 
-1. Clone the repository.
-2. Install dependencies: `npm install`.
-3. Set up environment variables (e.g., `JWT_SECRET`, `DB_URI`).
-4. Start the server: `npm start`.
+  Just go on [official Node.js website](https://nodejs.org/) and download the installer.
+  Also, be sure to have `git` available in your PATH, `npm` might need it (You can find git [here](https://git-scm.com/)).
 
-## License
+- #### Node installation on Ubuntu
 
-This project is licensed under the MIT License.
+  You can install nodejs and npm easily with apt install, just run the following commands.
+
+      $ sudo apt install nodejs
+      $ sudo apt install npm
+
+- #### Other Operating Systems
+  You can find more information about the installation on the [official Node.js website](https://nodejs.org/) and the [official NPM website](https://npmjs.org/).
+
+If the installation was successful, you should be able to run the following command.
+
+    $ node --version
+    v20.16.0
+
+    $ npm --version
+    10.8.1
+
+If you need to update `npm`, you can make it using `npm`! Cool right? After running the following command, just open again the command line and be happy.
+
+    $ npm install npm -g
+
+## Getting Started
+
+    $ git clone [GIT_PATH]
+    $ cd PROJECT_TITLE
+    $ npm install
+
+## Configure app
+
+Create .env file and add relevant key and values as shared separately along with code
+
+    $ run this command in postgres database 
+    $ npm start
+
+## API Document endpoints
+
+- swagger-ui Endpoint : http://localhost:3000/api-docs/v1/web-mobile
+
+
+TO run migration
+
+    $ npx sequelize-cli db:migrate
+
+
+
